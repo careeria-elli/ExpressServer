@@ -15,11 +15,18 @@
     <h1 class = "hidden">Hello from node and express server!</h1>
     <div class = "hidden" id ="sisältö"></div>
     
+    <button class="hidden" onclick="logOut()">logOut</button>
+
     <script>
 
         const savedPin = localStorage.getItem("pinkoodi")
         if (savedPin!= null && savedPin != undefined){
             showElements()
+        }
+        //--------------log out functio--------------------
+        function logOut() {
+            localStorage.clear()
+            window.location.reload()
         }
 
         //--------------pin koodin tarkistus---------------
@@ -47,7 +54,7 @@
                     document.getElementById("pin-div").style.visibility = "hidden"
                 }
             }
-        //--------------Datan haku---------------
+        //--------------Datan haku--------------------------------
         async function fetchData() {
             document.getElementById("sisältö").innerHTML = "<h4>Ladataan herkkuja...</h4>"
 
