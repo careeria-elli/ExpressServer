@@ -14,7 +14,7 @@
         async function fetchData() {
             document.getElementById("sisältö").innerHTML = "<h4>Ladataan herkkuja...</h4>"
 
-            var x = `<table><thead><th>Herkun nimi</th><th>Tuotekoodi></th></thead><tbody>`
+            var x = `<table><thead><th>Herkun nimi</th><th>Tuotekoodi</th></thead><tbody>`
             try {    
                 const response = await fetch("http://localhost:3000/api/herkut")
                 //muutetaan json java script muotoon
@@ -26,7 +26,7 @@
 
                 //taulukko päätetään ja renderöidään html elementtiin
                 x += `</tbody></table>`
-                document.getElementById("sisältö").innerHtml = x
+                document.getElementById("sisältö").innerHTML =x
             }   
             //virhetilanteen hallinta
             catch(error) {
