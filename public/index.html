@@ -17,6 +17,11 @@
     
     <script>
 
+        const savedPin = localStorage.getItem("pinkoodi")
+        if (savedPin!= null && savedPin != undefined){
+            showElements()
+        }
+
         //--------------pin koodin tarkistus---------------
         async function checkPin() {
             var pin = document.getElementById("pin").value 
@@ -25,19 +30,23 @@
 
 
             if (pin==correctPin){
-                var hiddenElements = document.getElementsByClassName("hidden")
-                
-                for (i=0; i<hiddenElements.length; i++){
-                    hiddenElements[i].style.visibility = "visible"
-                
-                    document.getElementById("pin-div").style.visibility = "hidden"
-                }
+                //pinkoodin tallennus local storageen
+                localStorage.setItem("pinkoodi", pin)
+                showElements()
             }
             else{
                 alert("Väärä pin koodi!")
             }
     }
 
+        //--------------elementtien piilotus ja haku-------------
+            function showElements(){
+                var hiddenElements = document.getElementsByClassName("hidden")
+                for (i=0; i<hiddenElements.length; i++){
+                    hiddenElements[i].style.visibility = "visible"
+                    document.getElementById("pin-div").style.visibility = "hidden"
+                }
+            }
         //--------------Datan haku---------------
         async function fetchData() {
             document.getElementById("sisältö").innerHTML = "<h4>Ladataan herkkuja...</h4>"
